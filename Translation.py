@@ -4,7 +4,7 @@ import random
 #save me from typing random.randint 60000 times
 #all probabilities ought to be positive integers, not .xx
 def chance():
-    return random.randint(0,100)
+    return random.uniform(0,1)
 
 #the actual state of nature
 def emergency(emergency_chance):
@@ -17,7 +17,7 @@ def emergency(emergency_chance):
 def alarmCall(emergency_chance, accuracy):
     nature = emergency(emergency_chance)
     x = chance()
-    if x<accuracy:
+    if x < accuracy:
         return nature
     return not nature
 
@@ -29,7 +29,7 @@ def authorityBelief(prior, signal_accuracy):
 #alarm is X and accuracy is tau
 def authorityDecision(alarm, alarm_accurate, stratN, stratT, prior):
     probability_order = stratN * ((1 - prior) * alarm_accurate + prior * (1 - alarm_accurate)) + stratT * ((1 - prior) * (1 - alarm_accurate) + prior * alarm_accurate)
-    if chance()<probabilityOrder:
+    if chance() < probabilityOrder:
         return true
     return false
 
