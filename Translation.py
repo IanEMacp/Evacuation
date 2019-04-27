@@ -78,10 +78,8 @@ def evacuee_payoff(state, eAction):
         return 0 - exitCost
     return 0
 
-def main():
-    eChance = .4
-    nature = emergency(eChance)
-    accuracy = .9
+def main(eChance = .4, accuracy = .9):
+    nature = emergency(eChance) 
     alarm = alarmCall(nature, accuracy)
     strategyOrder = .5
     strategyDont = .5
