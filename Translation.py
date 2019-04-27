@@ -78,16 +78,30 @@ def evacuee_payoff(state, eAction):
         return 0 - exitCost
     return 0
 
+def randStrategyState():
+    if random.randint(1,3) == 1:
+        return "More Alarms"
+    elif random.randint(1,3) == 2:
+        return "50-50"
+    elif random.randint(1,3) == 3:
+        return "Less Alarms"
+
 def strategySelection(strategyPrompt):
     strategy = input(strategyPrompt)
     if strategy == "More Alarms":
         strategyOrder = .8
         strategyDont = .2
+    elif strategy == "50-50":
+        strategyOrder = .5
+        strategyDont = .5
+    elif strategy == "Less Alarms":
+        strategyOrder = .2
+        strategyDont = .8
     return([strategyOrder, strategyDont])
 
 def main(eChance = .4, accuracy = .9):
     strategySelected = strategySelection("Enter selected strategy(More Alarms,)")
-    nature = emergency(eChance) 
+    nature = emergency(eChance)
     alarm = alarmCall(nature, accuracy)
     strategyOrder = strategySelected[0]
     strategyDont = strategySelected[1]
@@ -104,4 +118,3 @@ def main(eChance = .4, accuracy = .9):
     print("Authority Payoff: " + str(authority_payoff(nature, order, leave)))
 
 main()
-            
