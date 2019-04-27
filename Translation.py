@@ -85,7 +85,8 @@ def strategySelection(strategyPrompt):
         strategyDont = .2
     return([strategyOrder, strategyDont])
 
-def main(eChance = .4, accuracy = .9, strategySelected = strategySelection()):
+def main(eChance = .4, accuracy = .9):
+    strategySelected = strategySelection("Enter selected strategy(More Alarms,)")
     nature = emergency(eChance) 
     alarm = alarmCall(nature, accuracy)
     strategyOrder = strategySelected[0]
