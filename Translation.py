@@ -78,11 +78,18 @@ def evacuee_payoff(state, eAction):
         return 0 - exitCost
     return 0
 
-def main(eChance = .4, accuracy = .9):
+def strategySelection(strategyPrompt):
+    strategy = input(strategyPrompt)
+    if strategy == "More Alarms":
+        strategyOrder = .8
+        strategyDont = .2
+    return([strategyOrder, strategyDont])
+
+def main(eChance = .4, accuracy = .9, strategySelected = strategySelection()):
     nature = emergency(eChance) 
     alarm = alarmCall(nature, accuracy)
-    strategyOrder = .5
-    strategyDont = .5
+    strategyOrder = strategySelected[0]
+    strategyDont = strategySelected[1]
     if chance() < .3:
         prior = True
     else:
