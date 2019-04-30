@@ -112,9 +112,15 @@ def main(eChance = .4, accuracy = .9):
     order = authorityDecision(alarm, accuracy, strategyDont, strategyOrder, prior)
     leave = evacuee_decision(order, strategyDont, accuracy, prior) #not sure if strategyDont is actually what I want there
     print("Threat: " + str(nature))
+    print("Strategy: "+ str(randStrategyState())) #note need complete
     print("Evacuation Order: " + str(order))
     print("Exit Attempt: " + str(leave))
     print("Evacuee Payoff: " + str(evacuee_payoff(nature, leave)))
     print("Authority Payoff: " + str(authority_payoff(nature, order, leave)))
 
-main()
+# def ranGen():
+#     for i in range(1,100):
+#         strategySelection(randStrategyState())
+#         return main()
+#
+# ranGen()
