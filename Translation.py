@@ -118,9 +118,43 @@ def main(eChance = .4, accuracy = .9):
     print("Evacuee Payoff: " + str(evacuee_payoff(nature, leave)))
     print("Authority Payoff: " + str(authority_payoff(nature, order, leave)))
 
-# def ranGen():
-#     for i in range(1,100):
-#         strategySelection(randStrategyState())
-#         return main()
-#
-# ranGen()
+def WriteToCSV(dataToWrite, name):
+    with open(name, "a") as csvfile:
+        dataWriter = csv.writer(csvfile)
+        dataWriter.writerow(dataToWrite)
+
+def main(cycles):
+    cycles = int(input(cycles))
+    strategySelected = strategySelection("Enter selected strategy(More Alarms, 50-50, Less Alarms)")
+    eChance = .4
+    accuracy = .9
+    for i in range(cycles):
+        nature = emergency(eChance)
+        alarm = alarmCall(nature, accuracy)
+        strategyOrder = strategySelected[0]
+        strategyDont = strategySelected[1]
+        if chance() < .3:
+            prior = True
+        else:
+            prior = False
+        order = authorityDecision(alarm, accuracy, strategyDont, strategyOrder, prior)
+        leave = evacuee_decision(order, strategyDont, accuracy, prior) #not sure if strategyDont is actually what I want there
+        resultsList = []
+        threat = "Threat: " + str(nature)
+        print(threat)
+        resultsList.append(nature)
+        evacOrder = "Evacuation Order: " + str(order)
+        print(evacOrder)
+        resultsList.append(order)
+        exitAttempt = "Exit Attempt: " + str(leave)
+        print(exitAttempt)
+        resultsList.append(leave)
+        evacPay = "Evacuee Payoff: " + str(evacuee_payoff(nature, leave))
+        print(evacPay)
+        resultsList.append(evacuee_payoff(nature, leave))
+        authPay = "Authority Payoff: " + str(authority_payoff(nature, order, leave))
+        print(authPay)
+        resultsList.append(authority_payoff(nature, order, leave))
+        WriteToCSV(resultsList, "results.csv")
+
+main("Enter number of cycles: ")
