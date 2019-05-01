@@ -1,6 +1,6 @@
 #a word-for-word, so to speak, translation of "The Cry Wolf Effect" into Python.
 import random
-
+import csv
 #save me from typing random.randint 60000 times
 #all probabilities ought to be positive integers, not .xx
 def chance():
