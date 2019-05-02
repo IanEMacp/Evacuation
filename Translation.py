@@ -137,11 +137,12 @@ def main(cycles):
         print(authPay)
         resultsList.append(authority_payoff(nature, order, leave))
 
-        csv_number = 0
-        csvExists = os.path.isfile("results" + str(csv_number) + ".csv")
-        while (csvExists == True):
-            csv_number = csv_number + 1
-            csvExists = os.path.isfile("results" + str(csv_number) + ".csv")
-        WriteToCSV(resultsList, "results" + str(csv_number) + ".csv")
+        #csv_number = 0
+        #csvExists = os.path.isfile("results" + str(csv_number) + ".csv")
+        #while (csvExists == True):
+            #csv_number = csv_number + 1
+            #csvExists = os.path.isfile("results" + str(csv_number) + ".csv")
+        #WriteToCSV(resultsList, "results" + str(csv_number) + ".csv")
+        WriteToCSV(resultsList, "results")
 
 main("Enter number of cycles: ")
