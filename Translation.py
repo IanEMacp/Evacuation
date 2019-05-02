@@ -143,6 +143,6 @@ def main(cycles):
             #csv_number = csv_number + 1
             #csvExists = os.path.isfile("results" + str(csv_number) + ".csv")
         #WriteToCSV(resultsList, "results" + str(csv_number) + ".csv")
-        WriteToCSV(resultsList, "results")
+        WriteToCSV(resultsList, "results.csv")
 
 main("Enter number of cycles: ")
